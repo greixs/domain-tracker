@@ -1,26 +1,21 @@
-
+/* TODO: - create an API to get and modify the state for the store at data.js */
 <script lang="ts" setup>
-useHead({
-  bodyAttrs: {    class: 'dark:bg-gray-900 text-white'  },
-})
-</script>
+  import { storeToRefs } from "pinia";
+  import { useDataStore } from "~/store/data";
 
-<script lang="ts">
-export default {
-  data() {
-    return {
-      lists: [
-        { id:1, title: "2 quay st", date: "2/10/2022", link: "http://www.google.com" },
-        { id:2, title: "2 quay st", date: "2/10/2022", link: "http://www.google.com" }
-      ]
-    }
-  }
-}
+  const { posts } = storeToRefs(useDataStore());
+  const { getAllPosts, add } = useDataStore();
 
+  useHead({
+    bodyAttrs: { class: "dark:bg-gray-900 text-white" },
+  });
 </script>
 
 <template>
-    <div class="container mx-auto md:px-8 lg:px-16">
-      <Card v-for="item in lists" :key="item.id" :item="item" />
-    </div>
+  <div class="container mx-auto md:px-8 lg:px-16">
+    <Card
+      v-for="item in getAllPosts"
+      :key="item.id"
+      :item="item" />
+  </div>
 </template>
