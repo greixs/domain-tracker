@@ -7,4 +7,7 @@ export default defineNuxtConfig({
     },
   },
   buildModules: ["@pinia/nuxt"],
+  nitro: {
+    plugins: ["@/server/db/index.ts"],
+  },
 });
