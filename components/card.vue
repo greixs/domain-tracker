@@ -1,10 +1,8 @@
 <script setup lang="ts">
+  import { IItem } from "~~/types";
+
   interface propsInterface {
-    item: {
-      title: string;
-      date: string;
-      link: string;
-    };
+    item: IItem;
   }
 
   const props = defineProps<propsInterface>();
@@ -36,7 +34,7 @@
     <label
       class="mr-8"
       for="date">
-      {{ item.date }}
+      {{ new Date(item.date).toDateString() }}
     </label>
   </div>
 </template>
