@@ -19,5 +19,28 @@ export const useItemStore = defineStore({
         console.error(e.message);
       }
     },
+    async addItem(title, link, date) {
+      await $fetch("/api/item/create", {
+        method: "POST",
+        body: { title, date, link },
+      })
+        .catch((e) => {
+          console.error(e);
+        })
+        .then(async () => {
+          await this.getAll();
+        });
+    },
+    async removeItem(_id) {
+      await $fetch(`api/item/${_id}`, {
+        method: "DELETE",
+      })
+        .catch((e) => {
+          console.error(e);
+        })
+        .then(async () => {
+          await this.getAll();
+        });
+    },
   },
 });

@@ -12,6 +12,14 @@
   useHead({
     bodyAttrs: { class: "dark:bg-gray-900 text-white" },
   });
+
+  const addDummyData = async () => {
+    await itemStore.addItem("wow", "wow", "2022-10-10");
+  };
+
+  const removeItem = async (_id) => {
+    await itemStore.removeItem(_id);
+  };
 </script>
 
 <template>
@@ -19,6 +27,8 @@
     <Card
       v-for="item in itemStore.getAllItems"
       :key="item._id"
-      :item="item" />
+      :item="item"
+      @remove="removeItem" />
   </div>
+  <button @click="addDummyData">test add item</button>
 </template>
